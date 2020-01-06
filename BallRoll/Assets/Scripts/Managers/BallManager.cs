@@ -5,8 +5,10 @@ using UnityEngine;
 public class BallManager : MonoBehaviour
 {
     public float speed = 0;
-    public float force = 1;
     public float friction = 2;
+    public float mass = 2;
+    public float acceleration = 0.5f;
+    public float force = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,13 +25,15 @@ public class BallManager : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
+            acceleration = mass * force;
+            force = mass * acceleration;
             speed = speed + force;
         }
         else if (!Input.GetMouseButton(0))
         {
             if (speed >= 0.5)
             {
-                speed = speed - (friction * (Time.deltaTime * 10));
+                speed = speed - (friction * (Time.deltaTime * 100));
             }
             else if (speed <= -0.5)
             {
