@@ -18,6 +18,7 @@ public class BallManager : MonoBehaviour
     private GameObject bumperRight;
     private GameObject bumperTop;
     private GameObject bumperBottom;
+    private GameObject ball1;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,6 @@ public class BallManager : MonoBehaviour
         bumperBottom = GameObject.Find("BumperBottom");
     }
 
-
     // Update is called once per frame
     void Update()
     {
@@ -37,33 +37,32 @@ public class BallManager : MonoBehaviour
 
     void Movement()
     {
-        if (Input.GetMouseButton(0))
-        { 
-            acceleration = mass * force;
-            //force = mass * acceleration;
-            velocity = acceleration / Time.deltaTime;
-            //distance = velocity * Time.deltaTime;
-            momentum = mass * velocity;
-        }
-        else if (!Input.GetMouseButton(0))
-        {
-            if (velocity >= 0.5)
-            {
-                velocity = velocity - (friction * (Time.deltaTime * 10));
-            }
-            else if (velocity <= -0.5)
-            {
-                velocity = velocity + (friction * (Time.deltaTime * 10));
-            }
-            else
-            {
-                velocity= 0;
-            }
-        }
+           if (Input.GetMouseButton(0))
+           {
+               acceleration = mass * force;
+               //force = mass * acceleration;
+               velocity = acceleration / Time.deltaTime;
+               //distance = velocity * Time.deltaTime;
+               momentum = mass * velocity;
+           }
+           else if (!Input.GetMouseButton(0))
+           {
+               if (velocity >= 0.5)
+               {
+                   velocity = velocity - (friction * (Time.deltaTime * 10));
+               }
+               else if (velocity <= -0.5)
+               {
+                   velocity = velocity + (friction * (Time.deltaTime * 10));
+               }
+               else
+               {
+                   velocity = 0;
+               }
+           }
+        
         transform.Translate(Vector3.forward * (velocity * Time.deltaTime));
         //this.transform.Rotate(speed, 0, 0);
-
-
 
         if (this.transform.position.x <= bumperLeft.transform.position.x + bumperSize || this.transform.position.x >= bumperRight.transform.position.x - bumperSize)
         {
@@ -80,7 +79,8 @@ public class BallManager : MonoBehaviour
         }
 
 
-        print("Velocity");
-        print(velocity);
+        //print("Velocity");
+        //print(velocity);
+        
     }
 }

@@ -9,6 +9,7 @@ TagManager:
   - BumperBottom
   - BumperLeft
   - BumperRight
+  - Balls
   layers:
   - Default
   - TransparentFX
