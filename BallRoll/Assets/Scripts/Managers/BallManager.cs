@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class BallManager : MonoBehaviour
 {
-    public float speed = 0;
     public float friction = 2;
     public float mass = 2;
-    public float acceleration = 0.5f;
+    public float acceleration = 20;
     public float force = 0;
+    public float velocity = 0;
+    public float distance = 0;
+    public float momentum = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,27 +27,31 @@ public class BallManager : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
+            
             acceleration = mass * force;
             force = mass * acceleration;
-            speed = speed + force;
+            velocity = distance / Time.deltaTime;
+            distance = velocity * Time.deltaTime;
+            momentum = mass * velocity;
         }
         else if (!Input.GetMouseButton(0))
         {
-            if (speed >= 0.5)
+            if (velocity >= 0.5)
             {
-                speed = speed - (friction * (Time.deltaTime * 100));
+                velocity = velocity - (friction * (Time.deltaTime * 10));
             }
-            else if (speed <= -0.5)
+            else if (velocity <= -0.5)
             {
-                speed = speed + (friction * (Time.deltaTime * 10));
+                velocity = velocity + (friction * (Time.deltaTime * 10));
             }
             else
             {
-                speed = 0;
+                velocity= 0;
             }
         }
-        transform.Translate(Vector3.forward * (speed * Time.deltaTime));
+        transform.Translate(Vector3.forward * (velocity * Time.deltaTime));
         //this.transform.Rotate(speed, 0, 0);
-        print(speed);
+        print("Velocity");
+        print(velocity);
     }
 }
