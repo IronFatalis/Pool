@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 232859833}
   - component: {fileID: 232859832}
   m_Layer: 0
-  m_Name: Bumper
+  m_Name: BumperLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 585998202}
   - component: {fileID: 585998201}
   m_Layer: 0
-  m_Name: Bumper
+  m_Name: BumperTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -493,7 +493,7 @@ GameObject:
   - component: {fileID: 1431805198}
   - component: {fileID: 1431805197}
   m_Layer: 0
-  m_Name: Bumper
+  m_Name: BumperBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -708,9 +708,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dbec68e2b05593489ce3af7207c364c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  force: 1
   friction: 2
+  mass: 2
+  acceleration: 20
+  force: 1
+  velocity: 0
+  distance: 0
+  momentum: 0
 --- !u!1 &2037104268
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,7 +728,7 @@ GameObject:
   - component: {fileID: 2037104270}
   - component: {fileID: 2037104269}
   m_Layer: 0
-  m_Name: Bumper
+  m_Name: BumperRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

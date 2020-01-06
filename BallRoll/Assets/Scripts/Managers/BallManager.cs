@@ -11,12 +11,23 @@ public class BallManager : MonoBehaviour
     public float velocity = 0;
     public float distance = 0;
     public float momentum = 0;
+
     int inverse = -1;
+    int bumperSize = 1;
+    private GameObject bumperLeft;
+    private GameObject bumperRight;
+    private GameObject bumperTop;
+    private GameObject bumperBottom;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        bumperLeft = GameObject.Find("BumperLeft");
+        bumperRight = GameObject.Find("BumperRight");
+        bumperTop = GameObject.Find("BumperTop");
+        bumperBottom = GameObject.Find("BumperBottom");
     }
+
 
     // Update is called once per frame
     void Update()
@@ -27,12 +38,11 @@ public class BallManager : MonoBehaviour
     void Movement()
     {
         if (Input.GetMouseButton(0))
-        {
-            
+        { 
             acceleration = mass * force;
-            force = mass * acceleration;
-            velocity = distance / Time.deltaTime;
-            distance = velocity * Time.deltaTime;
+            //force = mass * acceleration;
+            velocity = acceleration / Time.deltaTime;
+            //distance = velocity * Time.deltaTime;
             momentum = mass * velocity;
         }
         else if (!Input.GetMouseButton(0))
@@ -53,20 +63,22 @@ public class BallManager : MonoBehaviour
         transform.Translate(Vector3.forward * (velocity * Time.deltaTime));
         //this.transform.Rotate(speed, 0, 0);
 
-        if (this.transform.position.x >= 9 || this.transform.position.x <= -9)
+
+
+        if (this.transform.position.x <= bumperLeft.transform.position.x + bumperSize || this.transform.position.x >= bumperRight.transform.position.x - bumperSize)
         {
             //bounce without reflecting direction
             Quaternion rot = new Quaternion(transform.rotation.x, transform.rotation.y * inverse, transform.rotation.z, transform.rotation.w);
             transform.rotation = rot;
-            //Vector3 Bump1 = new Vector3(9,transform.position.y,transform.position.z);
         }
-        else if (this.transform.position.z >= 19 || this.transform.position.z <= -19)
+        else if (this.transform.position.z >= bumperTop.transform.position.z - bumperSize || this.transform.position.z <= bumperBottom.transform.position.z + bumperSize)
         {
             //reflects direction and bounce
             Quaternion rot = new Quaternion(this.transform.rotation.x, this.transform.rotation.y * inverse, this.transform.rotation.z, transform.rotation.w);
             transform.rotation = rot;
             velocity = velocity * inverse;
         }
+
 
         print("Velocity");
         print(velocity);
