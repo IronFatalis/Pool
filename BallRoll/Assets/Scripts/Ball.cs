@@ -16,6 +16,7 @@ public class Ball : MonoBehaviour
     int ballSize = 1;
     public float b_radius = 0.5f;
     Bounds b;
+    bool hit = false;
 
     private GameObject bumperLeft;
     private GameObject bumperRight;
@@ -56,6 +57,10 @@ public class Ball : MonoBehaviour
         {
             b_velo = 12;
         }
+        if (hit == true)
+        {
+            Ball1.transform.Translate(Vector3.forward * (b_velo * Time.deltaTime));
+        }
     }
 
     void B_Collide()
@@ -65,7 +70,7 @@ public class Ball : MonoBehaviour
             Debug.Log("hit!");
             Debug.Log("extents: " + m_Collider1.bounds.extents);
             b_velo = b_velo - (b_fric * (Time.deltaTime * 10));
-            Ball1.transform.Translate(Vector3.forward * (1));
+            hit = true;
         }
         //colliding with rails
         if (this.transform.position.x <= bumperLeft.transform.position.x + bumperSize || this.transform.position.x >= bumperRight.transform.position.x - bumperSize)
