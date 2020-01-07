@@ -452,13 +452,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b0f75802511b64d9a11982fff8f5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  b_fric: 0
-  b_ma: 0
-  b_for: 0
+  b_fric: 2
+  b_ma: 2
+  b_for: 1
   b_velo: 0
   b_dist: 0
   b_momen: 0
-  inverse: 0
+  inverse: -1
   b_radius: 0.5
 --- !u!54 &1320413139
 Rigidbody:
