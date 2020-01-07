@@ -10,6 +10,7 @@ TagManager:
   - BumperLeft
   - BumperRight
   - Balls
+  - Table
   layers:
   - Default
   - TransparentFX

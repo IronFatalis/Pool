@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 232859832}
   m_Layer: 0
   m_Name: BumperLeft
-  m_TagString: Untagged
+  m_TagString: BumperLeft
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 585998201}
   m_Layer: 0
   m_Name: BumperTop
-  m_TagString: Untagged
+  m_TagString: BumperTop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -562,8 +562,8 @@ GameObject:
   - component: {fileID: 1413413606}
   - component: {fileID: 1413413605}
   m_Layer: 0
-  m_Name: Plane
-  m_TagString: Untagged
+  m_Name: Table
+  m_TagString: Table
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -656,7 +656,7 @@ GameObject:
   - component: {fileID: 1431805197}
   m_Layer: 0
   m_Name: BumperBottom
-  m_TagString: Untagged
+  m_TagString: BumperBottom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -878,7 +878,7 @@ GameObject:
   - component: {fileID: 2037104269}
   m_Layer: 0
   m_Name: BumperRight
-  m_TagString: Untagged
+  m_TagString: BumperRight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
