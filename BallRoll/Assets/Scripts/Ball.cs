@@ -21,6 +21,8 @@ public class Ball : MonoBehaviour
     private GameObject bumperRight;
     private GameObject bumperTop;
     private GameObject bumperBottom;
+    private GameObject CueBall, Ball1;
+    Collider m_Collider1, m_Collider2;
 
     private Ball(float b_velocity)
     {
@@ -42,12 +44,23 @@ public class Ball : MonoBehaviour
         bumperRight = GameObject.Find("BumperRight");
         bumperTop = GameObject.Find("BumperTop");
         bumperBottom = GameObject.Find("BumperBottom");
+        CueBall = GameObject.Find("CueBall");
+        Ball1 = GameObject.Find("Ball1");
+
+        m_Collider1 = CueBall.GetComponent<Collider>();
+        m_Collider2 = Ball1.GetComponent<Collider>();
     }
 
     // Update is called once per frame
     void Update()
     {
         B_Collide();
+        if (m_Collider1.bounds.Intersects(m_Collider2.bounds))
+        {
+            Debug.Log("hit!");
+            Quaternion rot = new Quaternion(transform.rotation.x, transform.rotation.y * inverse, transform.rotation.z, transform.rotation.w);
+            transform.rotation = rot;
+        }
     }
 
     void B_Collide()
