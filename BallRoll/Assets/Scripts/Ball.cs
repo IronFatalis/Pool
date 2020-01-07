@@ -23,6 +23,9 @@ public class Ball : MonoBehaviour
     private GameObject bumperBottom;
     private GameObject CueBall, Ball1;
     Collider m_Collider1, m_Collider2;
+    private Vector3 center;
+    private Vector3 center2;
+
 
     private Ball(float b_velocity)
     {
@@ -33,9 +36,7 @@ public class Ball : MonoBehaviour
     void Start()
     {
         b_accel = b_ma * b_for;
-        //force = mass * acceleration;
         b_velo = b_accel / Time.deltaTime;
-        //distance = velocity * Time.deltaTime;
         b_momen = b_ma * b_velo;
 
         b = new Bounds(new Vector3(0, 0, 0), new Vector3(2, 2, 2));
@@ -46,6 +47,8 @@ public class Ball : MonoBehaviour
         bumperBottom = GameObject.Find("BumperBottom");
         CueBall = GameObject.Find("CueBall");
         Ball1 = GameObject.Find("Ball1");
+        center = CueBall.GetComponent<Renderer>().bounds.center;
+        center2 = Ball1.GetComponent<Renderer>().bounds.center;
 
         m_Collider1 = CueBall.GetComponent<Collider>();
         m_Collider2 = Ball1.GetComponent<Collider>();
@@ -58,14 +61,15 @@ public class Ball : MonoBehaviour
         if (m_Collider1.bounds.Intersects(m_Collider2.bounds))
         {
             Debug.Log("hit!");
-            Quaternion rot = new Quaternion(transform.rotation.x, transform.rotation.y * inverse, transform.rotation.z, transform.rotation.w);
+            Debug.Log("extents: " + m_Collider1.bounds.extents);
+            Quaternion rot = new Quaternion(transform.rotation.x, 10, transform.rotation.z, transform.rotation.w);
             transform.rotation = rot;
+            
         }
     }
 
     void B_Collide()
     {
-        
         //colliding with rails
         if (transform.position.x <= bumperLeft.transform.position.x + bumperSize || transform.position.x >= bumperRight.transform.position.x - bumperSize)
         {
@@ -81,4 +85,3 @@ public class Ball : MonoBehaviour
         }
     }
 }
-
