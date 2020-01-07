@@ -11,6 +11,7 @@ public class BallManager : MonoBehaviour
     public float velocity = 0;
     public float distance = 0;
     public float momentum = 0;
+    float ballSize = 1;
 
     int inverse = -1;
     int bumperSize = 1;
@@ -18,7 +19,8 @@ public class BallManager : MonoBehaviour
     private GameObject bumperRight;
     private GameObject bumperTop;
     private GameObject bumperBottom;
-    private GameObject ball1;
+    private GameObject CueBall;
+    private GameObject Ball1;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,9 @@ public class BallManager : MonoBehaviour
         bumperRight = GameObject.Find("BumperRight");
         bumperTop = GameObject.Find("BumperTop");
         bumperBottom = GameObject.Find("BumperBottom");
+        CueBall = GameObject.Find("CueBall");
+        Ball1 = GameObject.Find("Balls");
+
     }
 
     // Update is called once per frame
@@ -37,30 +42,30 @@ public class BallManager : MonoBehaviour
 
     void Movement()
     {
-           if (Input.GetMouseButton(0))
-           {
-               acceleration = mass * force;
-               //force = mass * acceleration;
-               velocity = acceleration / Time.deltaTime;
-               //distance = velocity * Time.deltaTime;
-               momentum = mass * velocity;
-           }
-           else if (!Input.GetMouseButton(0))
-           {
-               if (velocity >= 0.5)
-               {
-                   velocity = velocity - (friction * (Time.deltaTime * 10));
-               }
-               else if (velocity <= -0.5)
-               {
-                   velocity = velocity + (friction * (Time.deltaTime * 10));
-               }
-               else
-               {
-                   velocity = 0;
-               }
-           }
-        
+        if (Input.GetMouseButton(0))
+        {
+            acceleration = mass * force;
+            //force = mass * acceleration;
+            velocity = acceleration / Time.deltaTime;
+            //distance = velocity * Time.deltaTime;
+            momentum = mass * velocity;
+        }
+        else if (!Input.GetMouseButton(0))
+        {
+            if (velocity >= 0.5)
+            {
+                velocity = velocity - (friction * (Time.deltaTime * 10));
+            }
+            else if (velocity <= -0.5)
+            {
+                velocity = velocity + (friction * (Time.deltaTime * 10));
+            }
+            else
+            {
+                velocity = 0;
+            }
+        }
+
         transform.Translate(Vector3.forward * (velocity * Time.deltaTime));
         //this.transform.Rotate(speed, 0, 0);
 
@@ -78,9 +83,11 @@ public class BallManager : MonoBehaviour
             velocity = velocity * inverse;
         }
 
-
         //print("Velocity");
         //print(velocity);
-        
+
     }
+
+    //sphere on sphere collision
+
 }
