@@ -80,23 +80,4 @@ public class Ball : MonoBehaviour
             //impactDir.z = impactDir.z * inverse;
         }
     }
-
-    void angleChk()
-    {
-        Vector3 targetDir = target.position - transform.position;
-        Vector3 forward = transform.forward;
-        float angle = Vector3.SignedAngle(targetDir, forward, Vector3.up);
-        if (angle < -5.0f)
-        {
-            print("turn left");
-        }
-        else if (angle > 5.0f)
-        {
-            print("turn right");
-        }
-        else
-        {
-            print("forward");
-        }
-    }
 }
