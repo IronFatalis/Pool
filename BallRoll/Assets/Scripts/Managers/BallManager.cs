@@ -40,9 +40,9 @@ public class BallManager : MonoBehaviour
                         ballSecond.transform.Translate(velocity.x * magnitude, 0, velocity.z * magnitude); //move ball according to new velocity
 
                         //CURRENT NOTES- 2020-01-08 4:24 PM
-                        //Velo vector is printing out into console, so there is a real number being generated from my math.
-                        //i feel like im just missing something small, or maybe my variables are just slightly off?
-                        //the math looks and feels right, as im using an angle
+                        //THE BALL MOVES, but it teleports in the wrong direction
+                        //PROGRESS NONETHELESS!!!!!
+                        //I know that some part of my calculation is off, or maybe it's just a matter of telling it from which direction it's being hit?
                     }
                 }
             }
