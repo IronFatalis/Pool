@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 37796063}
   m_Layer: 0
   m_Name: Balls
-  m_TagString: Untagged
+  m_TagString: Balls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -361,12 +361,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 629973304}
-  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: 1.2, z: -1.5}
+  m_LocalRotation: {x: 0.17364816, y: -0, z: -0, w: 0.9848078}
+  m_LocalPosition: {x: 0, y: 2.9, z: -20.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1743900925}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
 --- !u!81 &629973306
 AudioListener:
@@ -419,6 +419,53 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &873966170
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 873966172}
+  - component: {fileID: 873966171}
+  m_Layer: 0
+  m_Name: Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &873966171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873966170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dbec68e2b05593489ce3af7207c364c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BallList:
+  - {fileID: 1743900921}
+  - {fileID: 1320413137}
+  impact: {x: 0, y: 0, z: 0}
+--- !u!4 &873966172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873966170}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: -2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1320413136
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,14 +499,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b0f75802511b64d9a11982fff8f5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  b_fric: 2
-  b_ma: 2
-  b_for: 1
-  b_velo: 0
-  b_dist: 0
-  b_momen: 0
+  friction: 2
+  mass: 2
+  acceleration: 0
+  force: 1
+  velocity: 0
+  distance: 0
+  momentum: 0
   inverse: -1
   b_radius: 0.5
+  target: {fileID: 0}
 --- !u!54 &1320413139
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -543,7 +592,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1320413136}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.3590965, y: 5.502775, z: 9.866133}
+  m_LocalPosition: {x: 2.5, y: 5.502775, z: -9.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 37796063}
@@ -747,7 +796,7 @@ GameObject:
   - component: {fileID: 1743900923}
   - component: {fileID: 1743900922}
   - component: {fileID: 1743900926}
-  - component: {fileID: 1743900927}
+  - component: {fileID: 1743900921}
   m_Layer: 0
   m_Name: CueBall
   m_TagString: CueBall
@@ -755,6 +804,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1743900921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743900920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13a38a3d1e8358146ba09edb8dfa8e45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  friction: 2
+  mass: 2
+  acceleration: 0
+  force: 1
+  velocity: 0
+  distance: 0
+  momentum: 0
+  inverse: -1
+  b_radius: 0.5
+  target: {fileID: 0}
 --- !u!135 &1743900922
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -824,8 +895,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.3590965, y: 5.502775, z: -15.133867}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 629973305}
+  m_Children: []
   m_Father: {fileID: 37796063}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -845,25 +915,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1743900927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743900920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dbec68e2b05593489ce3af7207c364c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  friction: 2
-  mass: 2
-  acceleration: 20
-  force: 1
-  velocity: 0
-  distance: 0
-  momentum: 0
 --- !u!1 &2037104268
 GameObject:
   m_ObjectHideFlags: 0
