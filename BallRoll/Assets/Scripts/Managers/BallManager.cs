@@ -37,9 +37,9 @@ public class BallManager : MonoBehaviour
                         float angle = radians * (180 / Mathf.PI); //convert it to degrees
                         velocity = new Vector3(angle, 0, angle); //balls new velocity is equal to the magnitude of the direction vector on x and z axes
                         print("velo vector xyz: " + " " + velocity.x + " " + velocity.y + " " + velocity.z); //print the velocity vector
-                        ballSecond.transform.Translate((direction.x * magnitude), 0, (direction.z * magnitude)); //move ball according to new velocity
+                        ballSecond.transform.Translate(direction.x * magnitude, 0, direction.z * magnitude); //move ball according to new velocity
 
-                        //CURRENT NOTES- 2020-01-08 4:24 PM
+                        //CURRENT NOTES- 2020-01-08 5:00 PM
                         //HOLY HANNA BARBERA IM CLOSE BOIS
                         //the ball now moves out of the way of the cue ball but with no momentum and it does it very strangely
                     }
