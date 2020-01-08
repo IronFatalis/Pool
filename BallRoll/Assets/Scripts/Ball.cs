@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    public float friction = 2; //friction
+    public float friction = 1; //friction
     public float mass = 2; //mass
     public float acceleration = 0; //acceleration
-    public float force = 1; //force
-    public float velocity = 0; //velocity
+    public float force = 0; //force
     public float distance = 0; //unused
     public float momentum = 0; //momentum
     public float inverse = -1;
@@ -33,9 +32,7 @@ public class Ball : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        acceleration = mass * force;
-        velocity = acceleration / Time.deltaTime;
-        momentum = mass * velocity;
+        
 
         b = new Bounds(new Vector3(0, 0, 0), new Vector3(2, 2, 2));
 
@@ -56,14 +53,6 @@ public class Ball : MonoBehaviour
     public virtual void Update()
     {
         B_Collide();
-        if (velocity > 12)
-        {
-            velocity = 12;
-        }
-        if (hit == true)
-        {
-            Ball1.transform.Translate(Vector3.forward * (velocity * Time.deltaTime));
-        }
     }
 
     void B_Collide()
@@ -81,13 +70,14 @@ public class Ball : MonoBehaviour
             //bounce without reflecting direction
             Quaternion rot = new Quaternion(this.transform.rotation.x, this.transform.rotation.y * inverse, this.transform.rotation.z, this.transform.rotation.w);
             transform.rotation = rot;
+            //impactDir.x = impactDir.x * inverse;
         }
         else if (this.transform.position.z >= bumperTop.transform.position.z - bumperSize || this.transform.position.z <= bumperBottom.transform.position.z + bumperSize)
         {
             //reflects direction and bounce
             Quaternion rot = new Quaternion(this.transform.rotation.x, this.transform.rotation.y * inverse, this.transform.rotation.z, this.transform.rotation.w);
             transform.rotation = rot;
-            velocity *= inverse;
+            //impactDir.z = impactDir.z * inverse;
         }
     }
 

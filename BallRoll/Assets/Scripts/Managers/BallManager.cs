@@ -5,7 +5,7 @@ using UnityEngine;
 public class BallManager : MonoBehaviour
 {
     public List<Ball> BallList;
-    public Vector3 impact;
+    public Vector3 direction;
 
     // Start is called before the first frame update
     void Start()
@@ -22,12 +22,13 @@ public class BallManager : MonoBehaviour
             {
                 if(ballFirst.name != ballSecond.name)
                 {
-                    impact = ballSecond.transform.position - ballFirst.transform.position;
-                    float ballDistance = Mathf.Sqrt(Mathf.Pow(impact.x, 2) + Mathf.Pow(impact.y, 2) + Mathf.Pow(impact.z, 2));
+                    direction = ballSecond.transform.position - ballFirst.transform.position;
+                    float ballDistance = Mathf.Sqrt(Mathf.Pow(direction.x, 2) + Mathf.Pow(direction.y, 2) + Mathf.Pow(direction.z, 2));
                     if (ballDistance < 1)
                     {
                         print(ballDistance);
-
+                        float radians = Mathf.Atan2(direction.x, direction.z);
+                        float angle = radians * (180 / Mathf.PI);
                     }
                     
                 }
