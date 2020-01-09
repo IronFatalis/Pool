@@ -20,6 +20,7 @@ public class BallManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool hasCollided = false;
         foreach(Ball ballFirst in BallList)
         {
             foreach(Ball ballSecond in BallList)
@@ -32,18 +33,26 @@ public class BallManager : MonoBehaviour
                     if (magnitude < ballSize)
                     {
                         //print(magnitude);
+                        hasCollided = true;
                         float radians = Mathf.Atan2(direction.x, direction.z); //get the angle in radians
                         float angle = radians * (180 / Mathf.PI); //convert it to degrees
-                        float tempMass1 = ballSecond.mass - ballFirst.mass + 0.5f;
+                        float tempMass1 = ballSecond.mass - ballFirst.mass;
                         float tempMass2 = ballFirst.mass + ballSecond.mass;
-                        float standMass = ballFirst.mass * 2;
-                        tempVelocity = new Vector3(0, 0, 0);
-                        ballSecond.velocity = new Vector3(direction.x * magnitude * tempMass1 / tempMass2, 0, direction.z * magnitude * tempMass1 / tempMass2);
-
-
-                        //CURRENT NOTES- 2020-01-08 5:00 PM
-                        //HOLY HANNA BARBERA IM CLOSE BOIS
-                        //the ball now moves out of the way of the cue ball but with no momentum and it does it very strangely
+                        float standMass = ballSecond.mass * 2;
+                        ballSecond.velocity = new Vector3(direction.x * magnitude, 0, direction.z * magnitude);
+                        ballFirst.velocity = new Vector3((direction.x) * -1 * magnitude, 0, (direction.z) * -1 * magnitude);
+                        if (hasCollided)
+                        {
+                            ballSecond.velocity = ballSecond.velocity - new Vector3(0, 0, 0) * .005f;
+                            ballFirst.velocity = ballFirst.velocity - new Vector3(0, 0, 0) * .005f;
+                            hasCollided = false;
+                        }
+                        //CURRENT NOTES- 2020-01-09 6:09 PM
+                        //so ive noticed that collsion works perfectly as long as its only 1 ball hitting one ball...
+                        //which means that the velocity gets bigger and bigger if more than one collsion happens before the ball stops moving
+                        //ie the hit ball has its velocity from original collision plus the added velocity of any other collsions that happen
+                        //while its in motion
+                        //i have to find a way to apply more negative to a ball whenever it gets hit more than once
                     }
                 }
             }
