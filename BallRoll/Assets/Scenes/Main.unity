@@ -199,10 +199,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b0f75802511b64d9a11982fff8f5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friction: 2
+  friction: 1.05
   mass: 2
   acceleration: 0
-  force: 1
+  force: 0
   distance: 0
   momentum: 0
   inverse: -1
@@ -347,10 +347,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b0f75802511b64d9a11982fff8f5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friction: 2
+  friction: 1.05
   mass: 2
   acceleration: 0
-  force: 1
+  force: 0
   distance: 0
   momentum: 0
   inverse: -1
@@ -481,10 +481,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b0f75802511b64d9a11982fff8f5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friction: 2
+  friction: 1.05
   mass: 2
   acceleration: 0
-  force: 1
+  force: 0
   distance: 0
   momentum: 0
   inverse: -1
@@ -707,10 +707,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b0f75802511b64d9a11982fff8f5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friction: 2
+  friction: 1.05
   mass: 2
   acceleration: 0
-  force: 1
+  force: 0
   distance: 0
   momentum: 0
   inverse: -1
@@ -841,10 +841,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b0f75802511b64d9a11982fff8f5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friction: 2
+  friction: 1.05
   mass: 2
   acceleration: 0
-  force: 1
+  force: 0
   distance: 0
   momentum: 0
   inverse: -1
@@ -1225,10 +1225,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b0f75802511b64d9a11982fff8f5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friction: 2
+  friction: 1.05
   mass: 2
   acceleration: 0
-  force: 1
+  force: 0
   distance: 0
   momentum: 0
   inverse: -1
@@ -1285,8 +1285,6 @@ MonoBehaviour:
   - {fileID: 143647128}
   direction: {x: 0, y: 0, z: 0}
   acceleration: 0
-  momentum: 0
-  mass: 2
 --- !u!4 &873966172
 Transform:
   m_ObjectHideFlags: 0
@@ -1348,10 +1346,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b0f75802511b64d9a11982fff8f5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friction: 2
+  friction: 1.05
   mass: 2
   acceleration: 0
-  force: 1
+  force: 0
   distance: 0
   momentum: 0
   inverse: -1
@@ -1482,10 +1480,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b0f75802511b64d9a11982fff8f5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friction: 2
+  friction: 1.05
   mass: 2
   acceleration: 0
-  force: 1
+  force: 0
   distance: 0
   momentum: 0
   inverse: -1
@@ -1616,10 +1614,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b0f75802511b64d9a11982fff8f5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friction: 2
+  friction: 1.05
   mass: 2
   acceleration: 0
-  force: 1
+  force: 0
   distance: 0
   momentum: 0
   inverse: -1
@@ -1825,10 +1823,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b0f75802511b64d9a11982fff8f5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friction: 2
+  friction: 1.05
   mass: 2
   acceleration: 0
-  force: 1
+  force: 0
   distance: 0
   momentum: 0
   inverse: -1
@@ -1870,10 +1868,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b0f75802511b64d9a11982fff8f5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friction: 2
+  friction: 1.05
   mass: 2
   acceleration: 0
-  force: 1
+  force: 0
   distance: 0
   momentum: 0
   inverse: -1
@@ -2278,10 +2276,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b0f75802511b64d9a11982fff8f5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friction: 2
+  friction: 1.05
   mass: 2
   acceleration: 0
-  force: 1
+  force: 0
   distance: 0
   momentum: 0
   inverse: -1
@@ -2337,10 +2335,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b0f75802511b64d9a11982fff8f5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friction: 2
+  friction: 1.05
   mass: 2
   acceleration: 0
-  force: 1
+  force: 0
   distance: 0
   momentum: 0
   inverse: -1
@@ -2546,10 +2544,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b0f75802511b64d9a11982fff8f5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friction: 2
+  friction: 1.05
   mass: 2
   acceleration: 0
-  force: 1
+  force: 0
   distance: 0
   momentum: 0
   inverse: -1
@@ -2605,10 +2603,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b0f75802511b64d9a11982fff8f5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friction: 2
+  friction: 1.05
   mass: 2
   acceleration: 0
-  force: 1
+  force: 0
   distance: 0
   momentum: 0
   inverse: -1
@@ -2725,10 +2723,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a38a3d1e8358146ba09edb8dfa8e45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friction: 2
+  friction: 1.05
   mass: 2
   acceleration: 0
-  force: 1
+  force: 0
   distance: 0
   momentum: 0
   inverse: -1

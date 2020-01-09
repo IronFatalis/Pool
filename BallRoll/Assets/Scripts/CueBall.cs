@@ -41,7 +41,7 @@ public class CueBall : Ball
                 //if a collision occured. check if its our ball
                 if (hit.collider.gameObject.tag == "CueBall")
                 {
-                    force = 25;
+                    force = 200;
                     acceleration = force / mass;
 
                     velocity = new Vector3(acceleration * Time.deltaTime, 0, acceleration * Time.deltaTime);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    public float friction = 1; //friction
+    public float friction = 1.05f; //friction
     public float mass = 2; //mass
     public float acceleration = 0; //acceleration
     public float force = 0; //force
@@ -75,8 +75,9 @@ public class Ball : MonoBehaviour
 
     void Movement()
     {
-
         transform.Translate(velocity);
+        velocity.x = velocity.x / friction;
+        velocity.z = velocity.z / friction;
     }
 
 }
