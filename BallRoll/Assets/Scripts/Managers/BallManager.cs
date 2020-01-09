@@ -43,7 +43,8 @@ public class BallManager : MonoBehaviour
                         //print(magnitude);
                         float radians = Mathf.Atan2(direction.x, direction.z); //get the angle in radians
                         float angle = radians * (180 / Mathf.PI); //convert it to degrees
-                        ballSecond.transform.Translate(direction.x * magnitude, 0, direction.z * magnitude); //move ball according to new velocity
+                        ballSecond.velocity = new Vector3(direction.x * magnitude, 0, direction.z * magnitude);
+                         
 
                         //CURRENT NOTES- 2020-01-08 5:00 PM
                         //HOLY HANNA BARBERA IM CLOSE BOIS
