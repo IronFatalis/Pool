@@ -12,11 +12,12 @@ public class Ball : MonoBehaviour
     public float momentum = 0; //momentum
     public float inverse = -1;
     int bumperSize = 1;
-    int ballSize = 1;
     public float b_radius = 0.5f;
     Bounds b;
-    bool hit = false;
     public Transform target;
+    public Vector3 hitLocation;
+    public Vector3 impactDir;
+    public Vector3 velocity;
 
     private GameObject bumperLeft;
     private GameObject bumperRight;
@@ -30,7 +31,7 @@ public class Ball : MonoBehaviour
     private Vector3 forward;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         
 
@@ -52,32 +53,30 @@ public class Ball : MonoBehaviour
     // Update is called once per frame
     public virtual void Update()
     {
-        B_Collide();
-    }
+        Movement();
 
-    void B_Collide()
-    {
-        /*if (m_Collider1.bounds.Intersects(m_Collider2.bounds))
-        {
-            print("hit!");
-            velocity = velocity - (friction * (Time.deltaTime * 10));
-            hit = true;
-        }*/
-
-        //colliding with rails
         if (this.transform.position.x <= bumperLeft.transform.position.x + bumperSize || this.transform.position.x >= bumperRight.transform.position.x - bumperSize)
         {
             //bounce without reflecting direction
-            Quaternion rot = new Quaternion(this.transform.rotation.x, this.transform.rotation.y * inverse, this.transform.rotation.z, this.transform.rotation.w);
+            Quaternion rot = new Quaternion(transform.rotation.x, transform.rotation.y * inverse, transform.rotation.z, transform.rotation.w);
             transform.rotation = rot;
+            velocity.x *= inverse;
             //impactDir.x = impactDir.x * inverse;
         }
         else if (this.transform.position.z >= bumperTop.transform.position.z - bumperSize || this.transform.position.z <= bumperBottom.transform.position.z + bumperSize)
         {
             //reflects direction and bounce
-            Quaternion rot = new Quaternion(this.transform.rotation.x, this.transform.rotation.y * inverse, this.transform.rotation.z, this.transform.rotation.w);
+            Quaternion rot = new Quaternion(this.transform.rotation.x, this.transform.rotation.y * inverse, this.transform.rotation.z, transform.rotation.w);
             transform.rotation = rot;
+            velocity.z *= inverse;
             //impactDir.z = impactDir.z * inverse;
         }
     }
+
+    void Movement()
+    {
+
+        transform.Translate(velocity);
+    }
+
 }

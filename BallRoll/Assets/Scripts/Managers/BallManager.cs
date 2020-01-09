@@ -11,6 +11,7 @@ public class BallManager : MonoBehaviour
     public float acceleration = 0; //acceleration
     public float momentum;
     public float mass = 2;
+    float magnitude = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -28,15 +29,20 @@ public class BallManager : MonoBehaviour
                 if(ballFirst.name != ballSecond.name)
                 {
                     direction = ballSecond.transform.position - ballFirst.transform.position;
-                    float magnitude = Mathf.Sqrt(Mathf.Pow(direction.x, 2) + Mathf.Pow(direction.y, 2) + Mathf.Pow(direction.z, 2));
+                    magnitude = Mathf.Sqrt(Mathf.Pow(direction.x, 2) + Mathf.Pow(direction.y, 2) + Mathf.Pow(direction.z, 2));
+
+                    
+                    if(ballFirst.name == "CueBall" && magnitude < ballSize)
+                    {
+                        
+                    }
+
 
                     if (magnitude < ballSize)
                     {
-                        print(magnitude);
+                        //print(magnitude);
                         float radians = Mathf.Atan2(direction.x, direction.z); //get the angle in radians
                         float angle = radians * (180 / Mathf.PI); //convert it to degrees
-                        velocity = new Vector3(angle, 0, angle); //balls new velocity is equal to the magnitude of the direction vector on x and z axes
-                        print("velo vector xyz: " + " " + velocity.x + " " + velocity.y + " " + velocity.z); //print the velocity vector
                         ballSecond.transform.Translate(direction.x * magnitude, 0, direction.z * magnitude); //move ball according to new velocity
 
                         //CURRENT NOTES- 2020-01-08 5:00 PM
