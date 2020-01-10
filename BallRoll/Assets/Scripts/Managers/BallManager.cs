@@ -54,6 +54,8 @@ public class BallManager : MonoBehaviour
                         afterEnergy = 0.5f * (ballFirst.mass + ballSecond.mass) * totalKE;
                         ballSecond.lostEnergy = totalKE - afterEnergy;
                         ballSecond.newVelocity = new Vector3(direction1.x * magnitude1, 0, direction1.z * magnitude1) - ballFirst.velocity;
+                        print(ballSecond.lostEnergy);
+                        ballSecond.newVelocity = ballSecond.newVelocity * ballSecond.lostEnergy;
 
                     }
                 }
