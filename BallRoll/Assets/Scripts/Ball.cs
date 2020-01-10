@@ -18,6 +18,12 @@ public class Ball : MonoBehaviour
     public Vector3 hitLocation;
     public Vector3 impactDir;
     public Vector3 velocity;
+    public Vector3 newVelocity;
+    public float kineticEnergy;
+    public float lostEnergy;
+    public float totalEnergy;
+
+
 
     private GameObject bumperLeft;
     private GameObject bumperRight;
@@ -53,6 +59,8 @@ public class Ball : MonoBehaviour
     // Update is called once per frame
     public virtual void Update()
     {
+        if (gameObject.name == "CueBall")
+            print(velocity);
         Movement();
 
         if (this.transform.position.x <= bumperLeft.transform.position.x + bumperSize || this.transform.position.x >= bumperRight.transform.position.x - bumperSize)
@@ -71,13 +79,22 @@ public class Ball : MonoBehaviour
             velocity.z *= inverse;
             //impactDir.z = impactDir.z * inverse;
         }
+
+        if (gameObject.name == "CueBall")
+            print(velocity);
     }
 
     void Movement()
     {
+
         transform.Translate(velocity);
         velocity.x = velocity.x / friction;
         velocity.z = velocity.z / friction;
+
     }
 
+    public void ApplyNewVelo()
+    {
+        velocity = newVelocity;
+    }
 }

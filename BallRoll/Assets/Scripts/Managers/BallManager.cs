@@ -5,51 +5,64 @@ using UnityEngine;
 public class BallManager : MonoBehaviour
 {
     public List<Ball> BallList;
-    public Vector3 direction;
+    public Vector3 direction1;
     float ballSize = 1;
     public float acceleration = 0; //acceleration
-    float magnitude = 0;
+    float magnitude1 = 0;
+    public float totalKE;
+    public float afterEnergy;
+
+    List<Ball> ballsChanged;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        ballsChanged = new List<Ball>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        bool hasCollided = false;
-        foreach(Ball ballFirst in BallList)
+        foreach (Ball ballFirst in BallList)
         {
-            foreach(Ball ballSecond in BallList)
+            foreach (Ball ballSecond in BallList)
             {
-                if(ballFirst.name != ballSecond.name)
+                if (ballFirst.name != ballSecond.name)
                 {
-                    direction = ballSecond.transform.position - ballFirst.transform.position;
-                    magnitude = Mathf.Sqrt(Mathf.Pow(direction.x, 2) + Mathf.Pow(direction.y, 2) + Mathf.Pow(direction.z, 2));
-
-                    if (magnitude < ballSize)
+                    direction1 = ballSecond.transform.position - ballFirst.transform.position;
+                    magnitude1 = Mathf.Sqrt(Mathf.Pow(direction1.x, 2) + Mathf.Pow(direction1.y, 2) + Mathf.Pow(direction1.z, 2));
+                    float tempVelocityX = ballSecond.transform.position.x;
+                    float tempVelocityZ = ballSecond.transform.position.z;
+                    float tempVelocityF = Mathf.Pow(tempVelocityX + tempVelocityZ, 2);
+                    float tempVelocityX2 = ballFirst.transform.position.x;
+                    float tempVelocityZ2= ballFirst.transform.position.z;
+                    float tempVelocityF2 = Mathf.Pow(tempVelocityX2 + tempVelocityZ2, 2);
+                    if (magnitude1 < ballSize)
                     {
                         //float tempMass1 = ballSecond.mass - ballFirst.mass + 0.5f; may end up needing these later. elastic collision values
                         //float tempMass2 = ballFirst.mass + ballSecond.mass;
                         //float standMass = ballFirst.mass * 2;
-                        //print(magnitude);
-                        float radians = Mathf.Atan2(direction.x, direction.z); //get the angle in radians
-                        float angle = radians * (180 / Mathf.PI); //convert it to degrees
-                        ballSecond.velocity = new Vector3(direction.x * magnitude, 0, direction.z * magnitude);
-                        ballFirst.velocity = new Vector3((direction.x) * -1 * magnitude, 0, (direction.z) * -1 * magnitude);
-                        ballSecond.velocity = ballSecond.velocity - ballFirst.velocity * .00834f;
-                        ballFirst.velocity = ballFirst.velocity - ballSecond.velocity * .00834f;
-                        //CURRENT NOTES- 2020-01-09 6:09 PM
-                        //so ive noticed that collsion works perfectly as long as its only 1 ball hitting one ball...
-                        //which means that the velocity gets bigger and bigger if more than one collsion happens before the ball stops moving
-                        //ie the hit ball has its velocity from original collision plus the added velocity of any other collsions that happen
-                        //while its in motion
-                        //i have to find a way to apply more deceleration the more it gets bounced around by balls with not enougn force to actually change the velocity 
+                        //float radians = Mathf.Atan2(direction.x, direction.z); //get the angle in radians
+                        //float angle = radians * (180 / Mathf.PI); //convert it to degrees
+
+
+                        ballSecond.kineticEnergy = 0.5f * (tempVelocityF) * ballSecond.mass; //kinetic energy is calculated
+                        ballFirst.kineticEnergy = 0.5f * (tempVelocityF2) * ballFirst.mass;
+                        totalKE = ballSecond.kineticEnergy + ballFirst.kineticEnergy;
+                        ballsChanged.Add(ballSecond);
+                        totalKE = ballFirst.kineticEnergy + ballSecond.kineticEnergy;
+                        afterEnergy = 0.5f * (ballFirst.mass + ballSecond.mass) * totalKE;
+                        ballSecond.lostEnergy = totalKE - afterEnergy;
+                        ballSecond.newVelocity = new Vector3(direction1.x * magnitude1, 0, direction1.z * magnitude1) - ballFirst.velocity;
+
                     }
                 }
             }
         }
+        foreach (Ball ball in ballsChanged)
+        {
+            ball.ApplyNewVelo();
+        }
+        ballsChanged.Clear();
     }
 }
