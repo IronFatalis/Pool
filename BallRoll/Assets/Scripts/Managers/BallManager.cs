@@ -45,17 +45,16 @@ public class BallManager : MonoBehaviour
                         //float radians = Mathf.Atan2(direction.x, direction.z); //get the angle in radians
                         //float angle = radians * (180 / Mathf.PI); //convert it to degrees
 
-
                         ballSecond.kineticEnergy = 0.5f * (tempVelocityF) * ballSecond.mass; //kinetic energy is calculated
                         ballFirst.kineticEnergy = 0.5f * (tempVelocityF2) * ballFirst.mass;
-                        totalKE = ballSecond.kineticEnergy + ballFirst.kineticEnergy;
                         ballsChanged.Add(ballSecond);
                         totalKE = ballFirst.kineticEnergy + ballSecond.kineticEnergy;
                         afterEnergy = 0.5f * (ballFirst.mass + ballSecond.mass) * totalKE;
                         ballSecond.lostEnergy = totalKE - afterEnergy;
-                        ballSecond.newVelocity = new Vector3(direction1.x * magnitude1, 0, direction1.z * magnitude1) - ballFirst.velocity;
+                        //if i can just find where i apply the lost energy then i think im done...
+                        ballSecond.newVelocity = new Vector3(direction1.x * magnitude1, 0, direction1.z * magnitude1) - (ballFirst.velocity / ballSecond.lostEnergy);
                         print(ballSecond.lostEnergy);
-                        ballSecond.newVelocity = ballSecond.newVelocity * ballSecond.lostEnergy;
+                        
 
                     }
                 }
