@@ -25,7 +25,7 @@ public class BallManager : MonoBehaviour
     {
         foreach (Ball ballFirst in BallList)
         {
-            bool hasBeenHit = false;
+            bool isClose = false;
             foreach (Ball ballSecond in BallList)
             {
                 if (ballFirst.name != ballSecond.name)
@@ -38,6 +38,32 @@ public class BallManager : MonoBehaviour
                     float tempVelocityX2 = ballFirst.transform.position.x;
                     float tempVelocityZ2= ballFirst.transform.position.z;
                     float tempVelocityF2 = Mathf.Pow(tempVelocityX2 + tempVelocityZ2, 2);
+
+                    if (magnitude1 == ballSize * 2)
+                    {
+                        isClose = true;
+                    }
+
+                    if (isClose)
+                    {
+                        direction1 = ballSecond.transform.position - ballFirst.transform.position;
+                        magnitude1 = Mathf.Sqrt(Mathf.Pow(direction1.x, 2) + Mathf.Pow(direction1.y, 2) + Mathf.Pow(direction1.z, 2));
+                        tempVelocityX = ballSecond.transform.position.x;
+                        tempVelocityZ = ballSecond.transform.position.z;
+                        tempVelocityF = Mathf.Pow(tempVelocityX + tempVelocityZ, 2);
+                        tempVelocityX2 = ballFirst.transform.position.x;
+                        tempVelocityZ2 = ballFirst.transform.position.z;
+                        tempVelocityF2 = Mathf.Pow(tempVelocityX2 + tempVelocityZ2, 2);
+                        ballSecond.kineticEnergy = 0.5f * (tempVelocityF) * ballSecond.mass; //kinetic energy is calculated
+                        ballFirst.kineticEnergy = 0.5f * (tempVelocityF2) * ballFirst.mass;
+                        ballsChanged.Add(ballSecond);
+                        totalKE = ballFirst.kineticEnergy + ballSecond.kineticEnergy;
+                        afterEnergy = 0.5f * (ballFirst.mass + ballSecond.mass) * totalKE;
+                        ballSecond.lostEnergy = totalKE - afterEnergy;
+                        //if i can just find where i apply the lost energy then i think im done...
+                        print("lostenergy:" + " " + ballSecond.lostEnergy);
+
+                    }
                     if (magnitude1 < ballSize)
                     {
                         //float tempMass1 = ballSecond.mass - ballFirst.mass + 0.5f; may end up needing these later. elastic collision values
@@ -46,8 +72,6 @@ public class BallManager : MonoBehaviour
                         //float radians = Mathf.Atan2(direction.x, direction.z); //get the angle in radians
                         //float angle = radians * (180 / Mathf.PI); //convert it to degrees
 
-                        hasBeenHit = true;
-
                         ballSecond.kineticEnergy = 0.5f * (tempVelocityF) * ballSecond.mass; //kinetic energy is calculated
                         ballFirst.kineticEnergy = 0.5f * (tempVelocityF2) * ballFirst.mass;
                         ballsChanged.Add(ballSecond);
@@ -55,8 +79,8 @@ public class BallManager : MonoBehaviour
                         afterEnergy = 0.5f * (ballFirst.mass + ballSecond.mass) * totalKE;
                         ballSecond.lostEnergy = totalKE - afterEnergy;
                         //if i can just find where i apply the lost energy then i think im done...
-                        ballSecond.newVelocity = new Vector3(direction1.x * magnitude1, 0, direction1.z * magnitude1) - (ballFirst.velocity / ballSecond.lostEnergy);
-                        print("lostenergy:" + " " + ballSecond.lostEnergy);
+                        ballSecond.newVelocity = new Vector3(direction1.x * magnitude1, direction1.y * magnitude1, direction1.z * magnitude1) - (ballFirst.velocity / ballSecond.lostEnergy);
+                        print("lostenergy2:" + " " + ballSecond.lostEnergy);
                         
                         //i need the ball to update its stats beyond just on impact :/ if you look at how this whol thing is set up, everything gets applied ON COLLISION
                         //which is fine and dandy if you only have one ball hitting one ball only once, and nothing else.
@@ -65,30 +89,14 @@ public class BallManager : MonoBehaviour
                         //this is where I thought hasBeenHit would have worked but its the same issue as before, its not constantly updating those necessary values
                         //so the balls maintain a memory of how hard to hit the next ball it contacts based on a value that doesnt get updated
                         //i believe the values are the scalars on our velocity vector
-                        if (hasBeenHit)
-                        {
-                            direction1 = ballSecond.transform.position - ballFirst.transform.position;
-                            magnitude1 = Mathf.Sqrt(Mathf.Pow(direction1.x, 2) + Mathf.Pow(direction1.y, 2) + Mathf.Pow(direction1.z, 2));
-                            tempVelocityX = ballSecond.transform.position.x;
-                            tempVelocityZ = ballSecond.transform.position.z;
-                            tempVelocityF = Mathf.Pow(tempVelocityX + tempVelocityZ, 2);
-                            tempVelocityX2 = ballFirst.transform.position.x;
-                            tempVelocityZ2 = ballFirst.transform.position.z;
-                            tempVelocityF2 = Mathf.Pow(tempVelocityX2 + tempVelocityZ2, 2);
-                            ballSecond.kineticEnergy = 0.5f * (tempVelocityF) * ballSecond.mass; //kinetic energy is calculated
-                            ballFirst.kineticEnergy = 0.5f * (tempVelocityF2) * ballFirst.mass;
-                            ballsChanged.Add(ballSecond);
-                            totalKE = ballFirst.kineticEnergy + ballSecond.kineticEnergy;
-                            afterEnergy = 0.5f * (ballFirst.mass + ballSecond.mass) * totalKE;
-                            ballSecond.lostEnergy = totalKE - afterEnergy;
-                            //if i can just find where i apply the lost energy then i think im done...
-                            ballSecond.newVelocity = new Vector3(direction1.x * magnitude1, 0, direction1.z * magnitude1) - (ballFirst.velocity / ballSecond.lostEnergy);
-                            print("lostenergy:" + " " + ballSecond.lostEnergy);
-                            hasBeenHit = false;
-                        }
+                        //Even after calculating the balls stats every frame after they are merely close to each other, the popcorning still occurs
 
                     }
+
+
+
                 }
+                isClose = false;
             }
         }
         foreach (Ball ball in ballsChanged)
